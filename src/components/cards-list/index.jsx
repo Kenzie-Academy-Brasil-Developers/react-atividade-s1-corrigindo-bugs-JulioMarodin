@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { Card } from "../card";
-import "./style.css";
+import { useState } from 'react';
+import Card from '../card';
+import './style.css';
 
 const CardsList = ({ cardsList }) => {
   const [suitFilter, setSuitFilter] = useState(false);
 
   const handleSuitFilter = (e) => {
-    if (e.target.id = suitFilter) {
-      suitFilter = true;
+    if (e.target.id === suitFilter) {
+      setSuitFilter(true);
       e.target.checked = false;
     } else {
-      suitFilter = e.target.id
+      setSuitFilter(e.target.id);
     }
   };
 
@@ -24,7 +24,7 @@ const CardsList = ({ cardsList }) => {
           id="SPADES"
           name="suit"
         />
-        <label for="SPADES">Espadas</label>
+        <label htmlFor="SPADES">Espadas</label>
 
         <input
           onClick={handleSuitFilter}
@@ -32,15 +32,10 @@ const CardsList = ({ cardsList }) => {
           id="HEARTS"
           name="suit"
         />
-        <label for="HEARTS">Copas</label>
+        <label htmlFor="HEARTS">Copas</label>
 
-        <input
-          onClick={handleSuitFilter}
-          type="radio"
-          id="CLUBS"
-          name="suit"
-        />
-        <label for="CLUBS">Paus</label>
+        <input onClick={handleSuitFilter} type="radio" id="CLUBS" name="suit" />
+        <label htmlFor="CLUBS">Paus</label>
 
         <input
           onClick={handleSuitFilter}
@@ -48,10 +43,8 @@ const CardsList = ({ cardsList }) => {
           id="DIAMONDS"
           name="suit"
         />
-        <label for="DIAMONDS">Ouros</label>
+        <label htmlFor="DIAMONDS">Ouros</label>
       </div>
-    </div>
-    <div>
 
       {!suitFilter &&
         cardsList.map((actual, index) => {
@@ -61,10 +54,9 @@ const CardsList = ({ cardsList }) => {
       {suitFilter &&
         cardsList
           .filter((actual) => actual.suit === suitFilter)
-          .map((actual, index) => {
-            <Card card={actual} key={index} />;
-          })}
+          .map((actual, index) => <Card card={actual} key={index} />)}
     </div>
   );
 };
 
+export default CardsList;
